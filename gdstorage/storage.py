@@ -246,7 +246,7 @@ class GoogleDriveStorage(Storage):
                 if parent_id is not None:
                     meta_data['parents'] = [{'id': parent_id}]
             current_folder_data = self._drive_service.files().insert(body=meta_data).execute()
-            return current_folder_data    
+            return current_folder_data
         else:
             return folder_data
 
@@ -318,7 +318,7 @@ class GoogleDriveStorage(Storage):
             mime_type = self._UNKNOWN_MIMETYPE_
         media_body = MediaIoBaseUpload(fd, mime_type, resumable=True)
         body = {
-            'title': name,
+            'title': os.path.basename(name),
             'mimeType': mime_type
         }
         # Set the parent folder.
